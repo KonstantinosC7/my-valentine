@@ -96,3 +96,20 @@ button {
     color: #333;
     margin-top: 20px;
 }
+
+/* English Example */
+.confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #ff69b4;
+    top: -10px;
+    z-index: 9999;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}

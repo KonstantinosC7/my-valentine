@@ -21,19 +21,8 @@ noBtn.addEventListener('mouseover', () => {
 
 // English Example
 yesBtn.addEventListener('click', () => {
-    // 1. Πυροδότηση Κομφετί αμέσως
-    confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#ff69b4', '#ff1493', '#ffffff']
-    });
-
-    // 2. ΚΑΘΑΡΙΣΜΟΣ στυλ του body (Πολύ σημαντικό!)
-    document.body.style.display = 'block'; // Αλλάζουμε το flex σε block
-    document.body.style.height = 'auto';
-
-    // 3. Αλλαγή Περιεχομένου
+    // 1. Καθαρισμός και Αλλαγή Σελίδας
+    document.body.style.display = 'block';
     document.body.innerHTML = `
         <div class="success-page">
             <div class="image-wrapper">
@@ -42,14 +31,25 @@ yesBtn.addEventListener('click', () => {
             <h1 class="success-text">A deal it's a deal! 🌹</h1>
         </div>
     `;
-    
-    // 4. Συνεχόμενο κομφετί
-    const duration = 3 * 1000;
-    const end = Date.now() + duration;
 
-    (function frame() {
-        confetti({ particleCount: 2, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff69b4'] });
-        confetti({ particleCount: 2, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff69b4'] });
-        if (Date.now() < end) { requestAnimationFrame(frame); }
-    }());
+    // 2. Χειροκίνητο Confetti Function
+    const createConfetti = () => {
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti-piece');
+            
+            // Τυχαία θέση, χρώμα και ταχύτητα
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.backgroundColor = ['#ff69b4', '#ff1493', '#ffffff', '#ffd700'][Math.floor(Math.random() * 4)];
+            confetti.style.opacity = Math.random();
+            
+            document.body.appendChild(confetti);
+
+            // Διαγραφή του στοιχείου αφού πέσει για να μην βαραίνει το site
+            setTimeout(() => { confetti.remove(); }, 5000);
+        }
+    };
+
+    createConfetti();
 });
