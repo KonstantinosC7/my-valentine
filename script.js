@@ -20,9 +20,19 @@ noBtn.addEventListener('mouseover', () => {
 });
 
 // English Example
+// English Example
 yesBtn.addEventListener('click', () => {
-    // 1. Καθαρισμός και Αλλαγή Σελίδας
-    document.body.style.display = 'block';
+    // 1. Πηγαίνουμε στην κορυφή της σελίδας
+    window.scrollTo(0, 0);
+
+    // 2. Αλλάζουμε το στυλ του body για να κεντράρουμε τη νέα σελίδα
+    document.body.style.display = 'flex';
+    document.body.style.justifyContent = 'center';
+    document.body.style.alignItems = 'center';
+    document.body.style.height = '100vh';
+    document.body.style.overflow = 'hidden'; // Σταματάμε το scroll
+
+    // 3. Αντικατάσταση περιεχομένου
     document.body.innerHTML = `
         <div class="success-page">
             <div class="image-wrapper">
@@ -32,24 +42,19 @@ yesBtn.addEventListener('click', () => {
         </div>
     `;
 
-    // 2. Χειροκίνητο Confetti Function
-    const createConfetti = () => {
-        for (let i = 0; i < 100; i++) {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti-piece');
-            
-            // Τυχαία θέση, χρώμα και ταχύτητα
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            confetti.style.backgroundColor = ['#ff69b4', '#ff1493', '#ffffff', '#ffd700'][Math.floor(Math.random() * 4)];
-            confetti.style.opacity = Math.random();
-            
-            document.body.appendChild(confetti);
-
-            // Διαγραφή του στοιχείου αφού πέσει για να μην βαραίνει το site
-            setTimeout(() => { confetti.remove(); }, 5000);
-        }
-    };
-
+    // 4. Εκκίνηση Confetti
     createConfetti();
 });
+
+// Βγάλε το createConfetti() έξω από το listener για να είναι πιο καθαρό
+const createConfetti = () => {
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti-piece');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        confetti.style.backgroundColor = ['#ff69b4', '#ff1493', '#ffffff', '#ffd700'][Math.floor(Math.random() * 4)];
+        document.body.appendChild(confetti);
+        setTimeout(() => { confetti.remove(); }, 5000);
+    }
+};
