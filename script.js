@@ -51,9 +51,9 @@ yesBtn.addEventListener('click', () => {
             <div class="image-wrapper">
                 <img src="assets/4.jpeg" alt="Us Together" class="final-img">
             </div>
-                <h1 class="success-text">A deal it's a deal! 🌹</h1>
-                <h2 class="sub-text">Can't wait to see you! ❤️</h2>
-            </div>
+            <h1 class="success-text">A deal it's a deal! 🌹</h1>
+            <h2 class="sub-text">Can't wait to see you! ❤️</h2>
+        </div>
     `;
 
     // 4. Εκκίνηση Confetti
