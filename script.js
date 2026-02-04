@@ -19,16 +19,21 @@ noBtn.addEventListener('mouseover', () => {
     noBtn.style.top = `${randomY}px`;
 });
 
+// English Example
 yesBtn.addEventListener('click', () => {
-    // 1. Πυροδότηση Κομφετί
+    // 1. Πυροδότηση Κομφετί αμέσως
     confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ff69b4', '#ff1493', '#ffffff'] // Ροζ, έντονο ροζ και λευκό
+        colors: ['#ff69b4', '#ff1493', '#ffffff']
     });
 
-    // 2. Αλλαγή Περιεχομένου Σελίδας
+    // 2. ΚΑΘΑΡΙΣΜΟΣ στυλ του body (Πολύ σημαντικό!)
+    document.body.style.display = 'block'; // Αλλάζουμε το flex σε block
+    document.body.style.height = 'auto';
+
+    // 3. Αλλαγή Περιεχομένου
     document.body.innerHTML = `
         <div class="success-page">
             <div class="image-wrapper">
@@ -38,28 +43,13 @@ yesBtn.addEventListener('click', () => {
         </div>
     `;
     
-    // 3. (Προαιρετικό) Συνεχόμενο κομφετί για 3 δευτερόλεπτα
+    // 4. Συνεχόμενο κομφετί
     const duration = 3 * 1000;
     const end = Date.now() + duration;
 
     (function frame() {
-        confetti({
-            particleCount: 2,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 },
-            colors: ['#ff69b4']
-        });
-        confetti({
-            particleCount: 2,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 },
-            colors: ['#ff69b4']
-        });
-
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
+        confetti({ particleCount: 2, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff69b4'] });
+        confetti({ particleCount: 2, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff69b4'] });
+        if (Date.now() < end) { requestAnimationFrame(frame); }
     }());
 });
