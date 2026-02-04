@@ -2,6 +2,19 @@
 const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
 
+// Βγάλε το createConfetti() έξω από το listener για να είναι πιο καθαρό
+const createConfetti = () => {
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti-piece');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        confetti.style.backgroundColor = ['#ff69b4', '#ff1493', '#ffffff', '#ffd700'][Math.floor(Math.random() * 4)];
+        document.body.appendChild(confetti);
+        setTimeout(() => { confetti.remove(); }, 5000);
+    }
+};
+
 noBtn.addEventListener('mouseover', () => {
     // Ορίζουμε ένα περιθώριο (padding) για να μην ακουμπάει τις άκρες
     const padding = 50; 
@@ -46,15 +59,3 @@ yesBtn.addEventListener('click', () => {
     createConfetti();
 });
 
-// Βγάλε το createConfetti() έξω από το listener για να είναι πιο καθαρό
-const createConfetti = () => {
-    for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti-piece');
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        confetti.style.backgroundColor = ['#ff69b4', '#ff1493', '#ffffff', '#ffd700'][Math.floor(Math.random() * 4)];
-        document.body.appendChild(confetti);
-        setTimeout(() => { confetti.remove(); }, 5000);
-    }
-};
