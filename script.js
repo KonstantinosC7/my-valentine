@@ -20,5 +20,46 @@ noBtn.addEventListener('mouseover', () => {
 });
 
 yesBtn.addEventListener('click', () => {
-    document.body.innerHTML = "<h1>Can't wait for our date! ❤️🌹</h1>";
+    // 1. Πυροδότηση Κομφετί
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff69b4', '#ff1493', '#ffffff'] // Ροζ, έντονο ροζ και λευκό
+    });
+
+    // 2. Αλλαγή Περιεχομένου Σελίδας
+    document.body.innerHTML = `
+        <div class="success-page">
+            <div class="image-wrapper">
+                <img src="assets/4.jpeg" alt="Us Together" class="final-img">
+            </div>
+            <h1 class="success-text">A deal it's a deal! 🌹</h1>
+        </div>
+    `;
+    
+    // 3. (Προαιρετικό) Συνεχόμενο κομφετί για 3 δευτερόλεπτα
+    const duration = 3 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: ['#ff69b4']
+        });
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: ['#ff69b4']
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
 });
