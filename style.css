@@ -119,3 +119,17 @@ button {
         transform: translateY(100vh) rotate(720deg);
     }
 }
+
+/* English Example */
+.sub-text {
+    font-family: 'Dancing Script', cursive; /* Χρησιμοποιούμε την ίδια γραμματοσειρά */
+    font-size: 2rem;
+    color: #ff1493; /* Ένα πιο έντονο ροζ για αντίθεση */
+    margin-top: 10px;
+    animation: fadeIn 2s ease-in; /* Μικρό εφέ εμφάνισης */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
